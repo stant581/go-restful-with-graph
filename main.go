@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+
 	"github.com/gin-gonic/gin"
 	"github.com/stant581/go-restful/handlers"
 	"github.com/stant581/go-restful/repositories"
@@ -23,7 +24,12 @@ func main() {
 	r.POST("/users", handler.CreateUser)
 	r.GET("/users/:id/profile", handler.GetUserProfileById)
 	r.POST("/users/profile", handler.CreateUserProfile)
-	r.GET("/account/:id",handler.GetAccountById)
+	r.GET("/account/:id", handler.GetAccountById)
 	r.POST("/account", handler.CreateAccount)
+
+	// GraphQL endpoint
+	r.POST("/graphql", handler.GraphQLHandler)
+	r.GET("/graphql", handler.PlaygroundHandler)
+
 	r.Run()
 }
